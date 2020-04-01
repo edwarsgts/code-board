@@ -82,3 +82,40 @@ def lastStoneWeight(stones):
 
 def defangIPaddr(address):
     return address.replace(".", "[.]")
+
+
+def smallerNumbersThanCurrent(nums):
+    #  1365. How Many Numbers Are Smaller Than the Current Number
+    #  self-written, slower
+    result = []
+    for i in nums:
+        counter = 0
+        clone = nums[:]
+        clone.remove(i)
+        for j in clone:
+            if i > j:
+                counter += 1
+        result.append(counter)
+    return result
+
+
+def smallerNumbersThanCurrent_fast(nums):
+    n = len(nums)
+    if n == 0:
+        return []
+    count = {}
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+    else:
+        # take keys(input list) and sort
+        keys = sorted(count.keys())
+        # create new dict containing
+        smaller = {keys[0]: 0}
+        # because sorted so start from 1
+        for i in range(1, len(keys)):
+            smaller[keys[i]] = smaller[keys[i-1]] + count[keys[i-1]]
+        else:
+            for k, v in enumerate(nums):
+                nums[k] = smaller[v]
+            else:
+                return nums
