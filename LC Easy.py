@@ -55,3 +55,30 @@ def missingNumber(self, nums):
     expected_sum = len(nums)*(len(nums)+1)//2
     actual_sum = sum(nums)
     return expected_sum - actual_sum
+
+
+def luckyNumbers(matrix):
+    # 1380. Lucky Numbers in a Matrix
+    # Hint 1 : find out and save the min of each row
+    #  and max of each column in two lists
+    min_row = {min(row) for row in matrix}
+    max_column = {max(column) for column in zip(*matrix)}
+    return list(min_row & max_column)
+
+
+def lastStoneWeight(stones):
+    # 1046. Last Stone weight
+    while len(stones) > 1:
+        stones = sorted(stones)
+        y1 = stones.pop()
+        y2 = stones.pop()
+        if y1-y2 > 0:
+            stones.append(y1-y2)
+    if stones != []:
+        return stones[0]
+    else:
+        return 0
+
+
+def defangIPaddr(address):
+    return address.replace(".", "[.]")
