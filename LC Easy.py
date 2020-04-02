@@ -120,3 +120,21 @@ def smallerNumbersThanCurrent_fast(nums):
                 nums[k] = smaller[v]
             else:
                 return nums
+
+
+def findMostRepeartedChar(string):
+    from pprint import pprint
+    # calculate and put into dict
+    charCount = {x: string.count(x) for x in set(string)}
+
+    # check dictionary if needed
+    # pprint(charCount, width=1)
+
+    # sort dictionary by passing lamdbda that returns value in kv
+    charCountSorted = sorted(
+        charCount.items(),
+        key=lambda kv: kv[1],
+        reverse=True)
+
+    # return first item in sorted dictionary
+    return charCountSorted[0]
