@@ -1,5 +1,4 @@
-import math
-import collections
+from timeit import timeit
 
 
 def findLucky(arr):
@@ -40,6 +39,7 @@ def findTheDifference(s, t):
 
 
 def singleNumber(nums):
+    import collections
     # 136. Single Number
     #
     # for i in set(nums):
@@ -138,3 +138,13 @@ def findMostRepeartedChar(string):
 
     # return first item in sorted dictionary
     return charCountSorted[0]
+
+
+def num_jewels_in_stones(J, S):
+    # def oneline_njis(J, S):
+    # return sum(map(S.count, J))
+    result = 0
+    for jewel in J:
+        result += S.count(jewel)
+    return result
+
