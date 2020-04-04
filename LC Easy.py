@@ -148,3 +148,9 @@ def num_jewels_in_stones(J, S):
         result += S.count(jewel)
     return result
 
+
+def remove_element(nums, val):
+    while val in nums:
+        nums.remove(val)
+    return len(nums)
+
