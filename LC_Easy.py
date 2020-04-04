@@ -154,3 +154,10 @@ def remove_element(nums, val):
         nums.remove(val)
     return len(nums)
 
+
+def inverse_dict(normal_dict):
+    result = {}
+    for k, v in files.items():
+        result[v] = result.get(v, [])
+        result[v].append(k)
+    return result
