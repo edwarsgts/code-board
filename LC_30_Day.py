@@ -122,3 +122,68 @@ def move_zeroes_1(nums):
     return
 
 """
+
+"""
+# Day 5 : Best time to sell stock 2
+
+def max_profit_rough(prices):
+    stock_on_hand = False
+    buy_value = sell_value = profit = 0
+    for i in range(len(prices)):
+        if not stock_on_hand and i != len(prices)-1:
+            if prices[i] == prices[i+1]:
+                pass
+            elif i == 0:
+                if prices[i] < prices[i+1]:
+                    buy_value = prices[i]
+                    stock_on_hand = True
+            elif prices[i] <= prices[i-1] and prices[i] < prices[i+1]:
+                buy_value = prices[i]
+                stock_on_hand = True
+        elif stock_on_hand:
+            sell_value = prices[i]
+            if buy_value < sell_value:
+                # Confirm selling at better price
+                if i < len(prices)-1 and prices[i] > prices[i+1]:
+                    profit += sell_value - buy_value
+                    buy_value = 0
+                    stock_on_hand = False
+                # Sell if sell value larger and is last day of market
+                elif i == len(prices)-1:
+                    profit += sell_value - buy_value
+                    buy_value = 0
+                    stock_on_hand = False
+    return profit
+
+
+def max_profit_fastest(prices):
+    # return = if only one price
+    if len(prices) < 2:
+        return 0
+
+    diff_list = []
+
+    for i in range(1, len(prices)):
+        # if today price > ytd price
+        if prices[i] > prices[i-1]:
+            #
+            diff_list.append(prices[i] - prices[i-1])
+    return sum(diff_list)
+
+
+def max_profit_memory(prices):
+    if len(prices) < 2:
+        return 0
+
+    total_profit = 0
+    current_price = float("inf")
+
+    for price in prices:
+        profit = price - current_price
+        if profit > 0:
+            total_profit += profit
+        current_price = price
+    
+    return total_profit
+
+"""
