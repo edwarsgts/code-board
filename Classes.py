@@ -308,3 +308,5 @@ Point1 = namedtuple("Point", ["x", "y"])
 p1 = Point1(x=1, y=2)
 # to change the value(tuples are immutable), create a new object
 p1 = Point1(x=10, y=2)
+
+print(p1)
