@@ -1,3 +1,4 @@
+import collections
 """
 # Day 1 : Single Number
 
@@ -185,5 +186,26 @@ def max_profit_memory(prices):
         current_price = price
     
     return total_profit
+
+"""
+"""
+Day 6 : Group Anagrams
+
+
+def group_anagrams(strs):
+    ans = collections.defaultdict(list)
+    for s in strs:
+        ans[tuple(sorted(s))].append(s)
+    return list(ans.values())
+
+def group_anagrams_2(strs):
+    ans = collections.defaultdict(list)
+    for s in strs:
+        count = [0] * 26
+        for ch in s:
+            count[ord(ch)- ord('a')] += 1
+        ans[tuple(count)].append(s)
+    return ans.values()
+
 
 """
