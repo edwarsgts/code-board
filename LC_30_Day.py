@@ -209,3 +209,12 @@ def group_anagrams_2(strs):
 
 
 """
+
+""" 
+Day 7 : Count Elements
+
+def count_elements(arr):
+    num_freq = collections.Counter(arr)
+    return sum(num_freq[x] for x in num_freq if x+1 in num_freq)
+
+"""

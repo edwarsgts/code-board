@@ -1,6 +1,3 @@
-from timeit import timeit
-
-
 def findLucky(arr):
     """
     Given an array of integers arr, a lucky integer is an integer which has a frequency in the array equal to its value.
