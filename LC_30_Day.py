@@ -218,3 +218,21 @@ def count_elements(arr):
     return sum(num_freq[x] for x in num_freq if x+1 in num_freq)
 
 """
+
+"""
+Day 8 : Finding Middle Node of linked list
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+
+def middle_node(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow, fast = slow.next, fast.next.next
+    return slow
+
+"""

@@ -154,7 +154,22 @@ def remove_element(nums, val):
 
 def inverse_dict(normal_dict):
     result = {}
-    for k, v in files.items():
+    for k, v in result.items():
         result[v] = result.get(v, [])
         result[v].append(k)
     return result
+
+
+def reverse_string1(s):  # o(n) time o(n) space, recursion
+    def helper(left, right):
+        if left < right:
+            s[left], s[right] = s[right], s[left]
+            helper(left+1, right-1)
+    helper(0, len(s)-1)
+
+
+def reverse_string2(s):  # o(n) time o(1) space, loop
+    left, right = 0, len(s) - 1
+    while left < right:
+        s[left], s[right] = s[right], s[left]
+        left, right = left+1, right - 1
