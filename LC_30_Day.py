@@ -184,7 +184,7 @@ def max_profit_memory(prices):
         if profit > 0:
             total_profit += profit
         current_price = price
-    
+
     return total_profit
 
 """
@@ -210,7 +210,7 @@ def group_anagrams_2(strs):
 
 """
 
-""" 
+"""
 Day 7 : Count Elements
 
 def count_elements(arr):
@@ -236,3 +236,47 @@ def middle_node(head):
     return slow
 
 """
+"""
+
+Day 9: Backspace String Compare
+
+def backspace_compare(S, T):
+    if not S or not T or len(S) > 200 or len(T) > 200:
+        return None
+
+    s_list = []
+    t_list = []
+    for s in S:
+        if s == '#':
+            if not s_list:
+                pass
+            else:
+                s_list.pop()
+        else:
+            s_list.append(s)
+    for t in T:
+        if t == '#':
+            if not t_list:
+                pass
+            else:
+                t_list.pop()
+        else:
+            t_list.append(t)
+    return "".join(s_list) == "".join(t_list)
+
+
+def backspace_compare_memory(S, T):
+    import itertools
+
+    def F(S):
+        skip = 0
+        for x in reversed(S):
+            if x == '#':
+                skip += 1
+            elif skip:
+                skip -= 1
+            else:
+                yield x
+    return all(x == y for x, y in itertools.zip_longest(F(S), F(T)))
+
+    """
