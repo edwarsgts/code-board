@@ -173,3 +173,31 @@ def reverse_string2(s):  # o(n) time o(1) space, loop
     while left < right:
         s[left], s[right] = s[right], s[left]
         left, right = left+1, right - 1
+
+
+def subtract_product_and_sum(num):
+    product, add_sum = 1, 0
+    for digit in str(num):
+        product *= int(digit)
+    for digit in str(num):
+        add_sum += int(digit)
+    return product - add_sum
+
+
+def subtract_product_and_sum_1(num):
+    import operator
+    from functools import reduce
+    A = map(int, str(num))
+    return reduce(operator.mul, A)-sum(A)
+
+
+def find_numbers(nums):
+    result = 0
+    for num in nums:
+        count = 0
+        while (num > 0):
+            num //= 10
+            count += 1
+        if count % 2 == 0:
+            result += 1
+    return result
