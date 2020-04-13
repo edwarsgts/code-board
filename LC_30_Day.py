@@ -405,3 +405,21 @@ stack.peek()
 # This code is contributed by Blinkii
 
     """
+
+"""
+Day 12: Longest Contiguoes Array
+
+def find_max_length(nums):
+    #  add entry for initial count = 0 and index -1
+    table = {0: -1}
+    #  initialize max_length and count variable
+    maxlen = count = 0
+
+    for index, num in enumerate(nums):
+        count += num or -1
+        if count in table:
+            maxlen = max(maxlen, index-table.get(count))
+        else:
+            table[count] = index
+    return maxlen
+"""
