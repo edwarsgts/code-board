@@ -208,20 +208,13 @@ def group_anagrams_2(strs):
         ans[tuple(count)].append(s)
     return ans.values()
 
-
-"""
-
-"""
-Day 7 : Count Elements
+# Day 7 : Count Elements
 
 def count_elements(arr):
     num_freq = collections.Counter(arr)
     return sum(num_freq[x] for x in num_freq if x+1 in num_freq)
 
-"""
-
-"""
-Day 8 : Finding Middle Node of linked list
+# Day 8 : Finding Middle Node of linked list
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -236,10 +229,7 @@ def middle_node(head):
         slow, fast = slow.next, fast.next.next
     return slow
 
-"""
-"""
-
-Day 9: Backspace String Compare
+# Day 9: Backspace String Compare
 
 def backspace_compare(S, T):
     if not S or not T or len(S) > 200 or len(T) > 200:
@@ -280,10 +270,7 @@ def backspace_compare_memory(S, T):
                 yield x
     return all(x == y for x, y in itertools.zip_longest(F(S), F(T)))
 
-    """
-
-"""
-Day 10: MinStack with push,pop,getMin,top
+# Day 10: MinStack with push,pop,getMin,top
 
     # Class to make a Node
 class Node:
@@ -404,10 +391,26 @@ stack.peek()
 
 # This code is contributed by Blinkii
 
-    """
+Day 11 : Diameter of Binary Tree
 
-"""
-Day 12: Longest Contiguoes Array
+def diameter_of_binary_tree(self, root):
+    self.ans = 1
+
+    def depth(node):
+        # base condition
+        if node == None:
+            return 0
+
+        L = depth(node.left)
+        R = depth(node.right)
+        self.ans = max(self.ans, L+R+1)
+        return max(L, R) + 1
+    depth(root)
+    # returns edges instead of the no. of nodes
+    return self.ans - 1
+
+
+# Day 13: Longest Contiguous Array
 
 def find_max_length(nums):
     #  add entry for initial count = 0 and index -1
@@ -422,4 +425,23 @@ def find_max_length(nums):
         else:
             table[count] = index
     return maxlen
+"""
+
+"""
+Day 14 : Perform String Shifts
+
+def string_shift(s, shift):
+    # left shift +ve, right shift -ves
+    count = 0
+    for direction, amount in shift:
+        if direction:
+            count -= amount
+        else:
+            count += amount
+    # if count > length of string, cycled, modulus
+    # can take care of that
+    count %= len(s)
+    return s[count:] + s[:count]
+
+
 """
