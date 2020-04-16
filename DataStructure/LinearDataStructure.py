@@ -1,9 +1,12 @@
 class Array():
 
-    def __init__(self, length=0):
-        self.length = length
+    def __init__(self, __length=1):
+        self.__length = __length
         self.items = []
         self.count = 0
+
+    def get_length(self):
+        return self.__length
 
     def print(self):
         for i in range(self.count):
@@ -12,8 +15,8 @@ class Array():
     def insert(self, value):
         self.items.append(value)
         self.count += 1
-        if self.count > self.length:
-            self.length *= 2
+        if self.count > self.__length:
+            self.__length *= 2
 
     def removeAt(self, index):
         if index >= self.count or index < 0:
