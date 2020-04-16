@@ -11,11 +11,9 @@ def singleNumber(nums):
         if v == 1:
             return k
 
-"""
 
 # Day 2 :Happy Number
 
-"""
 def isHappy(n):
     seen = set()
     result = 0
@@ -31,7 +29,6 @@ def isHappy(n):
         else:
             n = result
             seen.add(n)
-"""
 
 #  Day 3
 
@@ -93,7 +90,7 @@ def isHappy(n):
 #     return max(max(leftans, rightans),leftmax+rightmax);
 # }
 
-"""
+
 Day 4
 
 def move_zeroes(nums):
@@ -123,9 +120,6 @@ def move_zeroes_1(nums):
         left += 1
     return
 
-"""
-
-"""
 # Day 5 : Best time to sell stock 2
 
 def max_profit_rough(prices):
@@ -188,8 +182,6 @@ def max_profit_memory(prices):
 
     return total_profit
 
-"""
-"""
 Day 6 : Group Anagrams
 
 
@@ -543,6 +535,22 @@ def productExceptSelf_algo2(nums):
         R *= nums[i]
 
     return answer
+
+Dat 16 : Valid Parentheses String
+
+def check_valid_string(s):
+    lo = hi = 0
+    for c in s:
+        lo += 1 if c == '(' else -1
+        hi += 1 if c != ')' else -1
+        if (hi < 0):
+            break
+        lo = max(lo, 0)
+    return lo == 0
+
+
+test_input = ')('
+print(check_valid_string(test_input))
 
 
 """
