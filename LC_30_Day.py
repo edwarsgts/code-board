@@ -552,5 +552,29 @@ def check_valid_string(s):
 test_input = ')('
 print(check_valid_string(test_input))
 
+Day 17: Is island
 
+def num_of_islands(grid):
+    def depth_first_search(grid, i, j):
+        # base condition, if out of border(i=j = 0 or larger than len(i) or len(j)) OR the cell is not '1'
+        if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] != '1':
+            return
+        # changes the 1 to #
+        grid[i][j] = '#'
+        # run through the grid for neighbouring 1
+        depth_first_search(grid, i+1, j)
+        depth_first_search(grid, i-1, j)
+        depth_first_search(grid, i, j+1)
+        depth_first_search(grid, i, j-1)
+    if not grid:
+        return 0
+
+    count = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j] == '1':
+                # if found '1', then pass the grid and the current postion to the function
+                depth_first_search(grid, i, j)
+                count += 1
+    return count
 """
