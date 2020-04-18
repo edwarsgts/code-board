@@ -216,3 +216,13 @@ def fizzBuzz(n):
         else:
             result.append(str(i))
     return result
+
+
+def decompress_RLE_list(nums):
+    result = []
+    for i in range(0, len(nums), 2):
+        freq, num = nums[i], nums[i+1]
+        while freq > 0:
+            result.append(num)
+            freq -= 1
+    return result
