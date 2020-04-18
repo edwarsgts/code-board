@@ -68,3 +68,121 @@ class Array():
                 self.count += 1
             else:
                 self.items[index] = value
+
+
+class LinkedList():
+    # Lookup is O(n)
+    # Insert is O(1) at the beginning/end
+    # Inserting in the middle O(n)
+    # Deleting in the beginning O(1)
+    # Deleting last item is o(n)
+    # Deleting middle item is o(n)
+    # Methods
+    # add first, add last,
+    # deleteLast, deleteFirst, remove(index)
+    # contains(value), indexOf(value)
+    # size() number of items in the list
+    # toArray() convert the linkedlist into an array
+    class __Node():
+        def __init__(self, value):
+            self.value = value
+            self.next = None
+
+        def __contains__(self, value):
+            return value
+
+        def __eq__(self, other):
+            return self.value == other.value
+
+    def __init__(self):
+        self.first = None
+        self.last = None
+        self.count = 0
+
+    def addLast(self, value):
+        new_node = self.__Node(value)
+        try:
+            if not self.first:
+                self.first = self.last = new_node
+            else:
+                self.last.next = new_node
+                self.last = new_node
+        finally:
+            self.count += 1
+
+    def addFirst(self, value):
+        new_node = self.__Node(value)
+        try:
+            if not self.first:
+                self.first = self.last = new_node
+
+            new_node.next = self.first
+            self.first = new_node
+        finally:
+            self.count += 1
+
+    def indexOf(self, value):
+        # return first occurence
+        index = 0
+        if not self.first:
+            return -1
+        pointer = self.first
+        while pointer:
+            if pointer.value == value:
+                return index
+            pointer = pointer.next
+            index += 1
+        else:
+            return -1
+
+    def contains(self, value):
+        return self.indexOf(value) != -1
+
+    def removeFirst(self):
+        if not self.first:
+            return "list is empty"
+
+        try:
+
+            if self.first == self.last:
+                self.first = self.last = None
+                return
+
+            self.first = self.first.next
+        finally:
+            self.count -= 1
+
+    def removeLast(self):
+        if not self.first:
+            return "list is empty"
+        try:
+            if self.first == self.last:
+                self.first = self.last = None
+                return
+
+            pointer = self.getPreviousNode(self.last)
+            self.last = pointer
+            self.last.next = None
+        finally:
+            self.count -= 1
+
+    def getPreviousNode(self, node):
+        pointer = self.first
+        while pointer.next != node:
+            pointer = pointer.next
+        return pointer
+
+    def toArray(self):
+        result = []
+        pointer = self.first
+        while pointer:
+            result.append(pointer.value)
+            pointer = pointer.next
+        return result
+
+    def print(self):
+        result = self.toArray()
+        print(result)
+
+    def size(self):
+        return self.count
