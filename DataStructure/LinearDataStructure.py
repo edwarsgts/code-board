@@ -83,6 +83,7 @@ class LinkedList():
     # contains(value), indexOf(value)
     # size() number of items in the list
     # toArray() convert the linkedlist into an array
+
     class __Node():
         def __init__(self, value):
             self.value = value
@@ -93,6 +94,9 @@ class LinkedList():
 
         def __eq__(self, other):
             return self.value == other.value
+
+        def __nonzero__(self):
+            return self.value
 
     def __init__(self):
         self.first = None
@@ -167,6 +171,9 @@ class LinkedList():
             self.count -= 1
 
     def getPreviousNode(self, node):
+        if node == self.first:
+            return False
+
         pointer = self.first
         while pointer.next != node:
             pointer = pointer.next
@@ -186,3 +193,50 @@ class LinkedList():
 
     def size(self):
         return self.count
+
+    def reversed(self):
+        # I wrote this and this is slower
+        pointer = self.last
+        while self.getPreviousNode(pointer):
+            node = self.getPreviousNode(pointer)
+            node.next, pointer.next = None, node
+            pointer = pointer.next
+        self.first, self.last = self.last, pointer
+
+    def reverse(self):
+        # This is from the tutorial and is faster
+        if not self.first:
+            return
+
+        prev = self.first
+        current = self.first.next
+
+        while current:
+            nex = current.next
+            current.next = prev
+            prev = current
+            current = nex
+
+        self.last = self.first
+        self.last.next = None
+        self.first = prev
+
+    def kth_node_from_the_end(self, k):
+        if not self.first:
+            return "List is empty"
+
+        # if k > self.count:
+        #     return "list smaller than target"
+
+        distance = k - 1
+        p1 = p2 = self.first
+
+        while distance:
+            p2 = p2.next
+            if not p2:
+                return "list smaller than target"
+            distance -= 1
+        while p2 != self.last:
+            p1 = p1.next
+            p2 = p2.next
+        return p1.value
