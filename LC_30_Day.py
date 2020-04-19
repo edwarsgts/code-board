@@ -597,4 +597,43 @@ def min_path_sum(grid):
 test_cases = [[[1, 3, 1],
                [1, 5, 1],
                [4, 2, 1]]]
+
+
+Day 19 : Binary search in rotated sorted list
+def search(nums, target):
+    if not nums:
+        return -1
+
+    low, high = 0, len(nums) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if target == nums[mid]:
+            # if target is the middle of our search, return
+            return mid
+
+        if nums[low] <= nums[mid]:
+            # if nums between num[low] and mid is sorted
+            if nums[low] <= target <= nums[mid]:
+                # check if target between low and mid
+                high = mid - 1
+            else:
+                # target is between mid and high
+                low = mid + 1
+
+        else:
+            # If num between low and mid not sorted
+            # then num between mid and high must be sorted
+            if nums[mid] <= target <= nums[high]:
+                # check if target between mid and high
+                low = mid+1
+            else:
+                # target is in low and mid
+                high = mid - 1
+
+    return -1
+
+
+test_cases = [[6, 7, 0, 1, 2, 4, 5], 0]
 """
