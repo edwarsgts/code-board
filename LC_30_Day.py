@@ -636,4 +636,29 @@ def search(nums, target):
 
 
 test_cases = [[6, 7, 0, 1, 2, 4, 5], 0]
+
+Day 20: Reconstruct a bst from a preorder traversal list
+
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+def bstFromPreorder(preorder):
+    import bisect
+
+    def helper(i, j):
+        if i == j:
+            return None
+        root = TreeNode(preorder[i])
+        mid = bisect.bisect(preorder, preorder[i], i+1, j)
+        root.left = helper(i+1, mid)
+        root.right = helper(mid, j)
+        return root
+    return helper(0, len(preorder))
+
+test_case = [8,5,1,7,10,12]
 """
+
