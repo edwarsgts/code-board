@@ -660,5 +660,22 @@ def bstFromPreorder(preorder):
     return helper(0, len(preorder))
 
 test_case = [8,5,1,7,10,12]
-"""
 
+Day 20 :  Leftmost column with one
+
+
+def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+    row, column = binaryMatrix.dimensions()
+    i = 0
+    j = column - 1
+    column_index = -1 
+        
+    while (i < row and j >= 0):
+        if binaryMatrix.get(i,j) == 0:
+            i += 1
+        else: 
+            column_index = j
+            j -= 1
+        
+    return column_index
+"""
