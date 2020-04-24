@@ -661,7 +661,7 @@ def bstFromPreorder(preorder):
 
 test_case = [8,5,1,7,10,12]
 
-Day 20 :  Leftmost column with one
+Day 21 :  Leftmost column with one
 
 
 def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
@@ -678,4 +678,32 @@ def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
             j -= 1
         
     return column_index
+
+Day 22: sub array sum equals k
+
+def subarraySum(nums, k):
+    d = {0: 1}
+    total = count = 0
+    for num in nums:
+        total += num
+        if total - k in d:
+            count += d[total-k]
+
+        d[total] = d.get(total, 0) + 1
+    return count
+
+
+test_case = [2, 2, 3, 1]
+target = 4
+
+Day 23: Bitwise AND of numbers range
+
+def rangeBitwiseAnd(self, m: int, n: int) -> int:
+        i = 0
+        while m != n:
+            m >>= 1
+            n >>= 1
+            i += 1
+        return n << i
+
 """
