@@ -1,3 +1,6 @@
+import collections
+
+
 def ip_to_int32(ip):
     """
     Take the following IPv4 address: 128.32.10.1 This address has 4 octets
@@ -25,3 +28,20 @@ def ip_to_int32(ip):
     # return sum
 
     # addr = ip.split()
+
+
+def highest_rank(arr):
+    if arr:
+        c = collections.Counter(arr)
+        m = max(c.values())
+        return max(k for k, v in c.items() if v == m)
+
+
+def find_even_index(arr):
+    for i in range(len(arr)):
+        if sum(arr[:i]) == sum(arr[i+1:]):
+            return i
+    return -1
+
+
+test = [1, 2, 1]
