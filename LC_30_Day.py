@@ -706,4 +706,32 @@ def rangeBitwiseAnd(self, m: int, n: int) -> int:
             i += 1
         return n << i
 
+
+# Day 24: Construct LRU class with the following properties:
+
+# Design and implement a data structure for Least Recently Used (LRU) cache
+# It should support the get and put method
+# get(key) -  Get the value (will alawys be positive) of 
+# the key if the key exists in the cache
+# put(key, value) - Set or insert the value if the key is not 
+# already present. When the cache reached its capacity, it should 
+# invalidate the least recently used item before inserting a new item
+
+class LRUCache:
+
+    def __init__(self, Capacity):
+        self.size = Capacity
+        self.cache = OrderedDict()
+
+    def get(self, key):
+        if key not in self.cache: return -1
+        val = self.cache[key]
+        self.cache.move_to_end(key)
+        return val
+
+    def put(self, key, val):
+        if key in self.cache: del self.cache[key]
+        self.cache[key] = val
+        if len(self.cache) > self.size:
+            self.cache.popitem(last=False)
 """

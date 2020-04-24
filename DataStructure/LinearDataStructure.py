@@ -240,3 +240,18 @@ class LinkedList():
             p1 = p1.next
             p2 = p2.next
         return p1.value
+
+
+class Stack():
+    """
+    Implement the undo feature
+    Build compilers for syntax checking
+    evalute expressions
+    build navigation like forward and back in web browsers
+    LIFO structure
+    Methods:
+    push(item) o(1)
+    pop() o(1)
+    peek() o(1)
+    isEmpty() o(1)
+    """
