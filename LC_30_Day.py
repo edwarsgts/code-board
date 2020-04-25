@@ -734,4 +734,17 @@ class LRUCache:
         self.cache[key] = val
         if len(self.cache) > self.size:
             self.cache.popitem(last=False)
+
+
+# Day 25: Jump Game
+
+
+def can_jump(nums):
+    m = 0
+    for i, num in enumerate(nums):
+        if i > m:
+            return False
+        m = max(m, i+num)
+    return True
+
 """

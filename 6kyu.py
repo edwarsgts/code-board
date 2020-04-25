@@ -43,5 +43,3 @@ def find_even_index(arr):
             return i
     return -1
 
-
-test = [1, 2, 1]
