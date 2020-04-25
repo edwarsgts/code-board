@@ -22,12 +22,11 @@ def ip_to_int32(ip):
 
     """
     # This is my solution
-    # sum = 0
-    # for index, num in enumerate(ip.split('.')[::-1]):
-    #     sum += int(num)*pow(256, index)
-    # return sum
+    sum = 0
+    for index, num in enumerate(ip.split('.')[::-1]):
+        sum += int(num)*pow(256, index)
+    return sum
 
-    # addr = ip.split()
 
 
 def highest_rank(arr):
