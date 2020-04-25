@@ -223,7 +223,7 @@ class LinkedList():
 
     def kth_node_from_the_end(self, k):
         if not self.first:
-            return "List is emptyn"
+            return "List is empty"
 
         # if k > self.count:
         #     return "list smaller than target"

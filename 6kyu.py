@@ -28,7 +28,6 @@ def ip_to_int32(ip):
     return sum
 
 
-
 def highest_rank(arr):
     if arr:
         c = collections.Counter(arr)
@@ -41,6 +40,3 @@ def find_even_index(arr):
         if sum(arr[:i]) == sum(arr[i+1:]):
             return i
     return -1
-
-
-test = [1, 2, 1]
