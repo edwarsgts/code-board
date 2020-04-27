@@ -22,12 +22,10 @@ def ip_to_int32(ip):
 
     """
     # This is my solution
-    # sum = 0
-    # for index, num in enumerate(ip.split('.')[::-1]):
-    #     sum += int(num)*pow(256, index)
-    # return sum
-
-    # addr = ip.split()
+    sum = 0
+    for index, num in enumerate(ip.split('.')[::-1]):
+        sum += int(num)*pow(256, index)
+    return sum
 
 
 def highest_rank(arr):
@@ -42,4 +40,7 @@ def find_even_index(arr):
         if sum(arr[:i]) == sum(arr[i+1:]):
             return i
     return -1
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56655e7e7eafb45589ebda47021c83f384e21b73
