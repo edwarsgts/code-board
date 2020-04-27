@@ -747,4 +747,75 @@ def can_jump(nums):
         m = max(m, i+num)
     return True
 
+
+# Day 26: Longest Common Subsequence
+
+
+def longest_common_subsequence(text1, text2):
+    dp = [[0] * (len(text2) + 1) for _ in range(len(text1) + 1)]
+    for i, c in enumerate(text1):
+        for j, d in enumerate(text2):
+            dp[i + 1][j + 1] = 1 + \
+                dp[i][j] if c == d else max(dp[i][j + 1], dp[i + 1][j])
+    return dp[-1][-1]
+
+
+def longest_common_subsequence_optimized(text1, text2):
+    m, n = len(text1), len(text2)
+    if m < n:
+        return longest_common_subsequence_optimized(text2, text1)
+    dp = [[0] * (n + 1) for _ in range(2)]
+    for i, c in enumerate(text1):
+        for j, d in enumerate(text2):
+            dp[1 - i % 2][j + 1] = 1 + dp[i %
+                                          2][j] if c == d else max(dp[i % 2][j + 1], dp[1 - i % 2][j])
+    return dp[m % 2][-1]
+
+
+def longestCommonSubsequence_fastest(self, text1: str, text2: str) -> int:
+
+    # If text1 doesn't reference the shortest string, swap them.
+    if len(text2) < len(text1):
+        text1, text = text2, text1
+
+    # The previous column starts with all 0's and like before is 1
+    # more than the length of the first word.
+    previous = [0] * (len(text1) + 1)
+
+    # Iterate up each column, starting from the last one.
+    for col in reversed(range(len(text2))):
+        # Create a new array to represent the current column.
+        current = [0] * (len(text1) + 1)
+        for row in reversed(range(len(text1))):
+            if text2[col] == text1[row]:
+                current[row] = 1 + previous[row + 1]
+            else:
+                current[row] = max(previous[row], current[row + 1])
+        # The current column becomes the previous one.
+        previous = current
+
+    # The original problem's answer is in previous[0]. Return it.
+    return previous[0]
+
+
 """
+
+# Day 27 : Maximal Square
+
+
+def maximalSquare(self, matrix: List[List[str]]) -> int:
+    if not matrix:
+        return 0
+    m, n = len(matrix), len(matrix[0])
+    dp = [[0 if matrix[i][j] == '0' else 1 for j in range(
+        0, n)] for i in range(0, m)]
+
+    for i in range(1, m):
+        for j in range(1, n):
+            if matrix[i][j] == '1':
+                dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
+            else:
+                dp[i][j] = 0
+
+    res = max(max(row) for row in dp)
+    return res ** 2
