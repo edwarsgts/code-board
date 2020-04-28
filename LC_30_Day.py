@@ -798,7 +798,7 @@ def longestCommonSubsequence_fastest(self, text1: str, text2: str) -> int:
     return previous[0]
 
 
-"""
+
 
 # Day 27 : Maximal Square
 
@@ -819,3 +819,46 @@ def maximalSquare(self, matrix: List[List[str]]) -> int:
 
     res = max(max(row) for row in dp)
     return res ** 2
+"""
+
+# Day 28 : First Unique Number
+
+"""
+You have a queue of integers, you need to retrieve the first unique
+integer in the queue.
+Implement a FirstUnique class tha does the following:
+- FirstUnique(int[] nums) initializes the object with the numbers in the queue
+- int showFirstUnique() returns the value of the first unique integer of the queue,
+ and returns -1 if there is no such integer
+- void add(int value) insert value to the queue
+
+"""
+
+
+class FirstUnique:
+
+    def __init__(self, nums: List[int]):
+        self.deque = collections.deque()
+        self.lookup = {}
+
+        for num in nums:
+            self.add(num)
+
+    def showFirstUnique(self) -> int:
+        if len(self.deque) == 0:
+            return -1
+
+        while len(self.deque) > 0 and self.deque[0] in self.lookup and self.lookup[self.deque[0]] >= 2:
+            self.deque.popleft()
+
+        if len(self.deque) == 0:
+            return -1
+        return self.deque[0]
+
+    def add(self, value: int) -> None:
+        if value in self.lookup:
+            self.lookup[value] += 1
+        else:
+            self.lookup[value] = 1
+
+        self.deque.append(value)
