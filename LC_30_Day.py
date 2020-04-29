@@ -862,3 +862,51 @@ class FirstUnique:
             self.lookup[value] = 1
 
         self.deque.append(value)
+
+
+class FirstUniqueOrderedDict:
+
+    def __init__(self, nums: List[int]):
+        self.d = collections.OrderedDict()
+        for num in nums:
+            self.d[num] = self.d.get(num, 0) + 1
+        self.removed = set()
+        for key in list(self.d.keys()):
+            if self.d[key] > 1:
+                self.removed.add(key)
+                self.d.pop(key)
+        # print(self.d)
+        # print(next(iter(self.d)))
+
+    def showFirstUnique(self) -> int:
+        return next(iter(self.d)) if self.d else -1
+
+    def add(self, value: int) -> None:
+        if value not in self.removed:
+            if value in self.d:
+                self.d.pop(value)
+                self.removed.add(value)
+            else:
+                self.d[value] = 1
+
+# Day 29 Binary Tree Maximum Path Sum
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def max_path_sum(root):
+    def maxend(node):
+        if not node:
+            return 0
+        left = maxend(node.left)
+        right = maxend(node.right)
+        self.max = max(self.max, left+node.val+right)
+        return max(node.val + max(left, right), 0)
+    self.max = -float('Inf')
+    maxend(root)
+    return self.max
