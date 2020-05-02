@@ -1,4 +1,4 @@
-class Array():
+class Array:
 
     def __init__(self, __length=1):
         self.__length = __length
@@ -70,7 +70,7 @@ class Array():
                 self.items[index] = value
 
 
-class LinkedList():
+class LinkedList:
     # Lookup is O(n)
     # Insert is O(1) at the beginning/end
     # Inserting in the middle O(n)
@@ -242,7 +242,7 @@ class LinkedList():
         return p1.value
 
 
-class Stack():
+class Stack:
     """
     Implement the undo feature
     Build compilers for syntax checking
@@ -254,4 +254,48 @@ class Stack():
     pop() o(1)
     peek() o(1)
     isEmpty() o(1)
+    """
+    #  push pop peek isEmpty
+
+    def __init__(self, size):
+        self.stack = []
+        self.count = 0
+        self.size = size
+
+    def __str__(self):
+        return str(self.stack)
+
+    def push(self, val):
+        if self.size <= self.count:
+            raise OverflowError("Stack is full")
+
+        self.stack.append(val)
+        self.count += 1
+
+    def spop(self):
+        if not self.count:
+            print("Stack is empty")
+            return
+
+        else:
+            self.count -= 1
+        return self.stack[self.count]
+
+    def peek(self):
+        if not self.count:
+            print("Stack is empty")
+            return
+
+        return self.stack[self.count-1]
+
+    def isEmpty(self):
+        return not self.count
+
+
+class Queue:
+    """
+    add/offer
+    remove/poll
+    peek/element
+
     """
