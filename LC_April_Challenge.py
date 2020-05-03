@@ -899,7 +899,7 @@ class TreeNode:
         self.right = right
 
 
-def max_path_sum(root):
+def max_path_sum(self, root):
     def maxend(node):
         if not node:
             return 0

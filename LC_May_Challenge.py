@@ -16,11 +16,11 @@ def first_bad_version_0(n):
     return left
 
 
-def first_bad_version_1(n):
-    import bisect
-    # using Bisect
-    self.__getitem__ = isBadVersion
-    return bisect.bisect(self, True, 1, n)
+# def first_bad_version_1(n):
+#     import bisect
+#     # using Bisect
+#     self.__getitem__ = isBadVersion
+#     return bisect.bisect(self, True, 1, n)
 
 
 def isBadVersion():
