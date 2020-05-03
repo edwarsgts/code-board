@@ -837,14 +837,14 @@ Implement a FirstUnique class tha does the following:
 
 class FirstUnique:
 
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums):
         self.deque = collections.deque()
         self.lookup = {}
 
         for num in nums:
             self.add(num)
 
-    def showFirstUnique(self) -> int:
+    def showFirstUnique(self):
         if len(self.deque) == 0:
             return -1
 
@@ -855,7 +855,7 @@ class FirstUnique:
             return -1
         return self.deque[0]
 
-    def add(self, value: int) -> None:
+    def add(self, value) -> None:
         if value in self.lookup:
             self.lookup[value] += 1
         else:
@@ -866,7 +866,7 @@ class FirstUnique:
 
 class FirstUniqueOrderedDict:
 
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums):
         self.d = collections.OrderedDict()
         for num in nums:
             self.d[num] = self.d.get(num, 0) + 1
