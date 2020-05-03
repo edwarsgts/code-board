@@ -98,10 +98,16 @@ class LinkedList:
         def __nonzero__(self):
             return self.value
 
+        def __str__(self):
+            return str(self.value)
+
     def __init__(self):
         self.first = None
         self.last = None
         self.count = 0
+
+    def __str__(self):
+        return str(self.toArray())
 
     def addLast(self, value):
         new_node = self.__Node(value)
