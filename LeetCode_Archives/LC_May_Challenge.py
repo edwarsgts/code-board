@@ -36,7 +36,7 @@ def num_jewels_in_stones(J, S):
         result += S.count(jewel)
     return result
 
-# Day 3 Ransom Note
+# Day 3: Ransom Note
 
 
 def can_construct(ransomNote, magazine):
@@ -45,3 +45,11 @@ def can_construct(ransomNote, magazine):
             return False
         magazine = magazine.replace(ch, "", 1)
     return True
+
+#  Day 4: Number Complement
+
+
+def find_complement(num):
+    b_num = bin(num)
+    res = ''.join(['0' if r == '1' else '1' for r in b_num[2:]])
+    return int(res, 2)
