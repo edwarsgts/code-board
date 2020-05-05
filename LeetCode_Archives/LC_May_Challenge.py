@@ -53,3 +53,14 @@ def find_complement(num):
     b_num = bin(num)
     res = ''.join(['0' if r == '1' else '1' for r in b_num[2:]])
     return int(res, 2)
+
+# Day 5 First Unique Character in a String
+
+
+def first_uniq_char(s):
+    import collections
+    freq = collections.Counter(s)
+    for k, v in freq.items():
+        if v == 1:
+            return s.index(k)
+    return -1
