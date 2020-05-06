@@ -64,3 +64,14 @@ def first_uniq_char(s):
         if v == 1:
             return s.index(k)
     return -1
+
+# Day 6 : Majority Element
+
+
+def majority_element(nums):
+    # if count of item is > len (num)/2,
+    # it is consiered a majority element
+    nums_set = set(nums)
+    for i in nums_set:
+        if nums.count(i) > len(nums)/2:
+            return i
