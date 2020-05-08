@@ -75,3 +75,39 @@ def majority_element(nums):
     for i in nums_set:
         if nums.count(i) > len(nums)/2:
             return i
+
+# Day 7 : Cousins of a Binary Tree
+
+
+def is_cousin(root, x, y):
+    def depth(root, x, par, level):
+        if not root:
+            return
+
+        if root.val == x:
+            return [level, par]
+
+        return depth(root.left, x, root, level+1) or depth(root.right, x, root, level+1)
+
+        a = depth(root, x, None, 1)
+        b = depth(root, y, None, 1)
+        if a[0] == b[0] and a[1] != b[1]:
+            return True
+        return False
+
+# Day 8: Check if it is a straight line
+def check_straight_line(coordinates):
+    #  To check if it is a straight line, using
+    # gradient to check, the expression is:
+    # (y - y1) / (x - x1) = (y1 - y0) / (x1 - x0)
+    # But to avoid zero division error, use multiplication form:
+    # dx * (y - y1) = dy * (x - x1), where dx = x1 - x0 and dy = y1 - y0
+    (x0, y0), (x1, y1) = coordinates[: 2]
+    for x, y in coordinates:
+        if (x1 - x0) * (y - y1) != (x - x1) * (y1 - y0):
+            return False
+    return True
+
+def check_straight_line_2(coordinates):
+    (x0, y0), (x1,y1) = coordinates[:2]
+    return all((x1-x0) * (y - y1) == (x-x1) * (y1 - y0) for x,y in coordinates)
