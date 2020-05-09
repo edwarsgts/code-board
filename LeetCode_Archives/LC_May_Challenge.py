@@ -96,6 +96,8 @@ def is_cousin(root, x, y):
         return False
 
 # Day 8: Check if it is a straight line
+
+
 def check_straight_line(coordinates):
     #  To check if it is a straight line, using
     # gradient to check, the expression is:
@@ -108,6 +110,17 @@ def check_straight_line(coordinates):
             return False
     return True
 
+
 def check_straight_line_2(coordinates):
-    (x0, y0), (x1,y1) = coordinates[:2]
-    return all((x1-x0) * (y - y1) == (x-x1) * (y1 - y0) for x,y in coordinates)
+    (x0, y0), (x1, y1) = coordinates[:2]
+    return all((x1-x0) * (y - y1) == (x-x1) * (y1 - y0) for x, y in coordinates)
+
+# Day 9: Valid Perfect Square
+
+
+def is_perfect_square(num):
+    # Newton's method
+    r = num
+    while r*r > num:
+        r = (r + num/r) // 2
+    return r*r == num
