@@ -217,9 +217,6 @@ def single_non_duplicate(nums):
 test_input = [1, 1, 2, 3, 3, 4, 4, 8, 8]
 expected_output = 2
 
-x = single_non_duplicate(test_input)
-print(x)
-
 
 def single_non_duplicate_60ms(nums):
     """
@@ -366,7 +363,7 @@ class Trie:
 
 # Day 15: Maximum sum circular subarray
 
-def maxSubarraySumCircular(self, A: List[int]) -> int:
+def maxSubarraySumCircular(A):
     total, maxSum, curMax, minSum, curMin = 0, - \
         float('inf'), 0, float('inf'), 0
     for a in A:
@@ -376,3 +373,23 @@ def maxSubarraySumCircular(self, A: List[int]) -> int:
         minSum = min(minSum, curMin)
         total += a
     return max(maxSum, total - minSum) if maxSum > 0 else maxSum
+
+# Day 16 : odd and even nodes in a linkedlist
+
+
+def oddEvenList(head):
+    if not head:
+        return None
+
+    odd = head
+    even = head.next
+    evenHead = even
+
+    while odd.next and even.next:
+        odd.next = even.next
+        odd = odd.next
+        even.next = odd.next
+        even = even.next
+
+    odd.next = evenHead
+    return head
