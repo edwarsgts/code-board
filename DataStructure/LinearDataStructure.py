@@ -92,8 +92,8 @@ class LinkedList:
         def __contains__(self, value):
             return value
 
-        def __eq__(self, other):
-            return self.value == other.value
+        # def __eq__(self, other):
+        #     return self.value == other.value
 
         def __nonzero__(self):
             return self.value
