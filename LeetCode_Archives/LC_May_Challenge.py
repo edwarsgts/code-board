@@ -412,3 +412,19 @@ def find_anagrams(s, p):
         if sCounter[s[i-len(p)+1]] == 0:
             del sCounter[s[i-len(p)+1]]   # remove the count if it is 0
     return res
+
+# Day 18 : Permutations in a String
+
+
+def check_inclusion(s1, s2):
+    import collections
+    s1_char_map = collections.Counter(s1)
+    s2_char_map = collections.Counter(s2[:len(s1)-1])
+    for i in range(len(s1)-1, len(s2)):
+        s2_char_map[s2[i]] += 1
+        if s2_char_map == s1_char_map:
+            return True
+        s2_char_map[s2[i-len(s1)+1]] -= 1
+        if s2_char_map[s2[i-len(s1)+1]] == 0:
+            del s2_char_map[s2[i-len(s1)+1]]
+    return False
