@@ -428,3 +428,17 @@ def check_inclusion(s1, s2):
         if s2_char_map[s2[i-len(s1)+1]] == 0:
             del s2_char_map[s2[i-len(s1)+1]]
     return False
+
+# Day 19 : Online Stock Span
+
+
+class StockSpanner:
+    def __init__(self):
+        self.history = []
+
+    def next(self, price):
+        weight = 1
+        while self.history and self.history[-1][0] <= price:
+            weight += self.history.pop()[1]
+        self.history.append((price, weight))
+        return weight
