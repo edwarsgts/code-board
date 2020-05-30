@@ -130,14 +130,14 @@ def is_perfect_square(num):
 
 def find_judge(N, trust):
     """
-    In a town, there are N people labelled from 1 to N.  There is a rumor that one 
+    In a town, there are N people labelled from 1 to N.  There is a rumor that one
     of these people is secretly the town judge.
     If the town judge exists, then:
     1. The town judge trusts nobody.
     2. Everybody (except for the town judge) trusts the town judge.
     3. There is exactly one person that satisfies properties 1 and 2.
     You are given trust, an array of pairs trust[i] = [a, b] representing that the person labelled a trusts the person labelled b.
-    If the town judge exists and can be identified, 
+    If the town judge exists and can be identified,
     return the label of the town judge.  Otherwise, return -1.
     """
     count = [0] * (N+1)
@@ -223,7 +223,7 @@ def single_non_duplicate_60ms(nums):
     1  1  4  4  5  5  6  8  8
                mid .
     1  1  4  5  5  6  6  8  8  9
-             .    
+             .
     """
     left, right = 0, len(nums) - 1
     while left <= right:
@@ -442,3 +442,178 @@ class StockSpanner:
             weight += self.history.pop()[1]
         self.history.append((price, weight))
         return weight
+# Day 20 :  Kth Smallest Element in a BST
+
+
+def kthSmallest(self, root: TreeNode, k: int) -> int:
+    stack = []
+
+    while True:
+        while root:
+            stack.append(root)
+            root = root.left
+        root = stack.pop()
+        k -= 1
+        if not k:
+            return root.val
+        root = root.right
+
+# Day 21  : Count Square Submatrices with All Ones
+
+
+def countSquares(matrix):
+    for i in range(1, len(matrix)):
+        for j in range(1, len(matrix[0])):
+            matrix[i][j] *= min(matrix[i - 1][j], matrix[i]
+                                [j - 1], matrix[i - 1][j - 1]) + 1
+    return sum(map(sum, matrix))
+
+
+# Day 22: Sort Characters by Frequency
+
+def frequency_sort(s):
+    import collections
+    return "".join([char * times for char, times in collections.Counter(str).most_common()])
+
+# Day 23: Interval List Intersections
+
+
+def intervalIntersection(A, B):
+    ans = []
+    i = j = 0
+
+    while i < len(A) and j < len(B):
+        # Let's check if A[i] intersects B[j].
+        # lo - the startpoint of the intersection
+        # hi - the endpoint of the intersection
+        lo = max(A[i][0], B[j][0])
+        hi = min(A[i][1], B[j][1])
+        if lo <= hi:
+            ans.append([lo, hi])
+
+            # Remove the interval with the smallest endpoint
+        if A[i][1] < B[j][1]:
+            i += 1
+        else:
+            j += 1
+
+    return ans
+
+# Day 24: Construct BST from Preorder Traversal
+
+
+def bstFromPreorder(preorder):
+    from LeetCode_Archives.LC_data_struc import TreeNode
+    import bisect
+
+    def helper(i, j):
+        if i == j:
+            return None
+        root = TreeNode(preorder[i])
+        mid = bisect.bisect(preorder, preorder[i], i+1, j)
+        root.left = helper(i+1, mid)
+        root.right = helper(mid, j)
+        return root
+    return helper(0, len(preorder))
+
+# Day 25: Uncrossed Lines
+
+
+def maxUncrossedLines(A, B):
+    m, n = len(A), len(B)
+    dp = [0] * (n + 1)
+    for i in range(m):
+        for j in range(n)[::-1]:
+            if A[i] == B[j]:
+                dp[j + 1] = dp[j] + 1
+        for j in range(n):
+            dp[j + 1] = max(dp[j + 1], dp[j])
+    return dp[n]
+
+# Day 26: Contiguous Array
+
+
+def findMaxLength(nums):
+    #  add entry for initial count = 0 and index -1
+    table = {0: -1}
+    #  initialize max_length and count variable
+    maxlen = count = 0
+
+    for index, num in enumerate(nums):
+        count += num or -1
+        if count in table:
+            maxlen = max(maxlen, index-table.get(count))
+        else:
+            table[count] = index
+    return maxlen
+
+# Day 27: Possible Bipartition
+
+
+def possibleBipartion(N, dislakes):
+    import collections
+    graph = collections.defaultdict(list)
+    for u, v in dislikes:
+        graph[u].append(v)
+        graph[v].append(u)
+
+    color = {}
+
+    def dfs(node, c=0):
+        if node in color:
+            return color[node] == c
+        color[node] = c
+        return all(dfs(nei, c ^ 1) for nei in graph[node])
+
+    return all(dfs(node)
+               for node in range(1, N+1)
+               if node not in color)
+
+# Day 28: Counting Bits
+
+
+def countBits(num):
+    res = [0]
+    while len(res) <= num:
+        res += [i+1 for i in res]
+    return res[:num+1]
+
+# Day 29: Course Schedule
+
+
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    graph = [[] for _ in range(numCourses)]
+    visited = [0 for _ in range(numCourses)]
+    # create graph
+    for pair in prerequisites:
+        x, y = pair
+        graph[x].append(y)
+    # visit each node
+    for i in range(numCourses):
+        if not self.dfs(graph, visited, i):
+            return False
+    return True
+
+
+def dfs(self, graph, visited, i):
+    # if ith node is marked as being visited, then a cycle is found
+    if visited[i] == -1:
+        return False
+    # if it is done visted, then do not visit again
+    if visited[i] == 1:
+        return True
+    # mark as being visited
+    visited[i] = -1
+    # visit all the neighbours
+    for j in graph[i]:
+        if not self.dfs(graph, visited, j):
+            return False
+    # after visit all the neighbours, mark it as done visited
+    visited[i] = 1
+    return True
+
+
+# Day 30:  K Closest Points to Origin
+def kClosest(points, K):
+    points.sort(key=lambda P: P[0]**2 + P[1]**2)
+    return points[:K]
